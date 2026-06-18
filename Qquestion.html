@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <br><br>
+    <title>QST - Catégorie Q</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+    --primary: #2563eb;
+    --success: #16a34a;
+    --error: #dc2626;
+    --bg: #3c79b7;
+    --card: #5e2a2a;
+    --text: #1e293b;
+}
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .quiz-container {
+            background: var(--card);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        .progress {
+            font-weight: bold;
+            color: #64748b;
+        }
+
+        .question {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .options-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .option-btn {
+            background: none;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: left;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .option-btn:hover:not([disabled]) {
+            background-color: #f1f5f9;
+            border-color: var(--primary);
+        }
+
+        .option-btn.correct {
+            background-color: #dcfce7;
+            border-color: var(--success);
+            color: #14532d;
+        }
+
+        .option-btn.wrong {
+            background-color: #fee2e2;
+            border-color: var(--error);
+            color: #7f1d1d;
+        }
+
+        .next-btn {
+            margin-top: 1.5rem;
+            width: 100%;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            display: none;
+        }
+
+        .next-btn:hover {
+            background-color: #1d4ed8;
+        }
+
+        .result-container {
+            text-align: center;
+        }
+
+        .score {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin: 1rem 0;
+        }
+
+        .restart-btn {
+            background-color: var(--text);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+    </style>
+   
+</head>
+<body>
+
+<div class="quiz-container" id="quiz">
+    </div>
+
+<script>
+    
+    const questionBank = [
+        { q: "Quelle est la capitale de l'Équateur ?", correct: "Quito", fill: ["Lima", "Bogota", "La Paz"] },
+        { q: "Quel minéral a une dureté de 7 sur l'échelle de Mohs ?", correct: "Quartz", fill: ["Diamant", "Topaze", "Gypse"] },
+        { q: "Quelle est la fête nationale française ?", correct: "Quatorze juillet", fill: ["Huit mai", "Onze novembre", "Premier mai"] },
+        { q: "Quel est le nom de l'appareil utilisé pour mesurer la température ?", correct: "Quel thermomètre (généralement)", fill: ["Baromètre", "Anémomètre", "Hygromètre"] },
+        { q: "Combien d'États y a-t-il aux États-Unis ?", correct: "Cinquante (ou Cinquante états)", fill: ["Quarante", "Soixante", "Trente"] }, // Remplacé par une qui commence vraiment par Q ci-dessous
+        { q: "Quel synonyme désigne une dispute ou un conflit ?", correct: "Querelle", fill: ["Accord", "Alliance", "Harmonie"] },
+        { q: "Quel fleuve traverse la ville de Québec ?", correct: "Québécois Saint-Laurent", fill: ["Mississippi", "Hudson", "Amazone"] },
+        { q: "Quel mot désigne un logement ou un lieu de vie pour des soldats ?", correct: "Quartier", fill: ["Hôtel", "Campement", "Bunker"] },
+        { q: "Quelle est la monnaie officielle du Guatemala ?", correct: "Quetzal", fill: ["Peso", "Dolar", "Sol"] },
+        { q: "Comment appelle-t-il le fait de recevoir quatre cartes identiques au poker ?", correct: "Carré", fill: ["Full", "Couleur", "Quinte"] }, // Remplacé ci-dessous
+        { q: "Quel mot désigne le fait d'avoir quatorze jours de repos ou d'isolement ?", correct: "Quatorzaine", fill: ["Semaine", "Mois", "Annuels"] },
+        { q: "Quel est le prénom de l'inventeur de la formule E=mc² ?", correct: "Quel brillant Albert", fill: ["Isaac", "Nikola", "Marie"] }
+    ];
+
+   
+    const cleanQuestionBank = [
+        { q: "Quelle est la capitale de l'Équateur ?", correct: "Quito", fill: ["Lima", "Bogota", "Santiago"] },
+        { q: "Quel minéral est composé de dioxyde de silicium ?", correct: "Quartz", fill: ["Calcite", "Feldspath", "Gypse"] },
+        { q: "Quand célèbre-t-il la prise de la Bastille en France ?", correct: "Quatorze juillet", fill: ["Premier mai", "Onze novembre", "Huit mai"] },
+        { q: "Quel synonyme désigne une vive dispute ?", correct: "Querelle", fill: ["Bataille", "Discussion", "Entente"] },
+        { q: "Quelle est la monnaie nationale du Guatemala ?", correct: "Quetzal", fill: ["Peso", "Real", "Bolivar"] },
+        { q: "Comment s'appelle une période d'isolement de 14 jours ?", correct: "Quatorzaine", fill: ["Quarantaine", "Semaine", "Décennie"] },
+        { q: "Quel est le nom donné aux habitants de la province francophone du Canada ?", correct: "Québécois", fill: ["Ontariens", "Acadiens", "Albertains"] },
+        { q: "Quel mot désigne le quart d'un cercle ?", correct: "Quadrant", fill: ["Segment", "Rayon", "Diamètre"] },
+        { q: "Quel mot latin désigne le nombre minimum de membres pour valider un vote ?", correct: "Quorum", fill: ["Veto", "Majorité", "Scrutin"] },
+        { q: "Comment appelle-t-on une suite de 4 cartes de même couleur au poker ?", correct: "Quinte", fill: ["Brelan", "Paire", "Flush"] }
+    ];
+
+    let currentQuestions = [];
+    let currentQuestionIndex = 0;
+    let score = 0;
+
+    const quizContainer = document.getElementById('quiz');
+
+    function initQuiz() {
+        
+        currentQuestions = [...cleanQuestionBank].sort(() => 0.5 - Math.random());
+        currentQuestionIndex = 0;
+        score = 0;
+        showQuestion();
+    }
+
+    function showQuestion() {
+        const currentQuestion = currentQuestions[currentQuestionIndex];
+        
+       
+        
+        const options = [currentQuestion.correct, ...currentQuestion.fill];
+        options.sort(() => 0.5 - Math.random());
+
+        quizContainer.innerHTML = `
+            <div class="header">
+                <h1>QST - Catégorie Q</h1>
+                <div class="progress">Question ${currentQuestionIndex + 1}/10</div>
+            </div>
+            <div class="question">${currentQuestion.q}</div>
+            <div class="options-grid">
+                ${options.map(option => `
+                    <button class="option-btn" onclick="checkAnswer(this, '${option.replace(/'/g, "\\'")}', '${currentQuestion.correct.replace(/'/g, "\\'")}')">
+                        ${option}
+                    </button>
+                `).join('')}
+            </div>
+            <button class="next-btn" id="next-btn" onclick="nextQuestion()">Question suivante</button>
+        `;
+    }
+
+    function checkAnswer(button, selected, correct) {
+        const buttons = document.querySelectorAll('.option-btn');
+        buttons.forEach(btn => btn.disabled = true);
+
+        if (selected === correct) {
+            button.classList.add('correct');
+            score++;
+        } else {
+            button.classList.add('wrong');
+            buttons.forEach(btn => {
+                if (btn.textContent.trim() === correct) {
+                    btn.classList.add('correct');
+                }
+            });
+        }
+
+        document.getElementById('next-btn').style.display = 'block';
+    }
+
+    function nextQuestion() {
+        currentQuestionIndex++;
+        if (currentQuestionIndex < 10) {
+            showQuestion();
+        } else {
+            showResults();
+        }
+    }
+
+    function showResults() {
+        quizContainer.innerHTML = `
+            <div class="result-container">
+                <h1>Fin du Quiz !</h1>
+                <p>Tu as terminé la suite de questions de la catégorie Q.</p>
+                <div class="score">${score} / 10</div>
+                <button class="restart-btn" onclick="initQuiz()">Recommencer</button>
+            </div>
+        `;
+    }
+
+    
+    initQuiz();
+</script>
+
+</body>
+</html>
