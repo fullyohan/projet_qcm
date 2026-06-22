@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QCM Master — Espace Admin</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* Tes variables de couleur exactes */
+            --emerald-dark: #064e3b;
+            --emerald-main: #047857;
+            --emerald-light: #10b981;
+            --emerald-soft: #ecfdf5;
+            --bg-light: #f9fafb;
+        }
+
+        body { 
+            background-color: var(--bg-light); 
+            color: #1f2937;
+            font-family: sans-serif;
+        }
+
+        .navbar-quiz {
+            background-color: #ffffff;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        /* Même style de carte épurée que ton quiz */
+        .admin-card {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 1rem;
+        }
+
+        .btn-emerald {
+            background-color: var(--emerald-main);
+            color: white;
+            font-weight: 600;
+            border: none;
+        }
+        .btn-emerald:hover { 
+            background-color: var(--emerald-dark); 
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar-quiz py-3 shadow-sm mb-4">
+        <div class="container d-flex justify-content-between align-items-center">
+            <span class="fw-bold text-dark">💡 QCM<span style="color:var(--emerald-light)">Master</span> <span class="badge bg-secondary ms-2 fs-6">Admin</span></span>
+            <a href="#" class="btn btn-sm btn-outline-danger fw-semibold">Déconnexion</a>
+        </div>
+    </nav>
+
+    <div class="container mb-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+
+                <h2 class="fw-bold text-dark mb-4">Gestion des Questions</h2>
+
+                <div class="card admin-card p-4 p-sm-5 mb-5 shadow-none">
+                    <h4 class="fw-bold text-dark mb-4">➕ Ajouter une nouvelle question</h4>
+                    
+                    <form action="#" method="POST">
+                        <div class="mb-3">
+                            <label class="form-label fw-bold text-secondary">Énoncé de la question</label>
+                            <input type="text" class="form-control p-3 rounded-3" placeholder="Ex: Quel port utilise le protocole SSH ?" required>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-bold text-success">Option A (Bonne réponse)</label>
+                                <input type="text" class="form-control p-2 rounded-3 border-success" placeholder="Ex: Port 22" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-bold text-danger">Option B (Fausse)</label>
+                                <input type="text" class="form-control p-2 rounded-3" placeholder="Ex: Port 80" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-bold text-danger">Option C (Fausse)</label>
+                                <input type="text" class="form-control p-2 rounded-3" placeholder="Ex: Port 443" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-bold text-danger">Option D (Fausse)</label>
+                                <input type="text" class="form-control p-2 rounded-3" placeholder="Ex: Port 21" required>
+                            </div>
+                        </div>
+
+                        <div class="text-end mt-3">
+                            <button type="submit" class="btn btn-emerald px-4 py-2 rounded-3 fw-bold">Enregistrer la question</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="card admin-card p-4 shadow-none">
+                    <h4 class="fw-bold text-dark mb-4">📋 Liste des questions de la base de données</h4>
+                    
+                    <div class="table-responsive">
+                        <table class="table table-bordered align-middle">
+                            <thead class="table-light">
+                                <tr>
+                                    <th style="width: 5%;">ID</th>
+                                    <th style="width: 50%;">Question</th>
+                                    <th style="width: 30%;">Bonne réponse</th>
+                                    <th style="width: 15%;">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td class="fw-medium">Qu'est-ce que le protocole HTTP ?</td>
+                                    <td class="text-success fw-bold">HyperText Transfer Protocol</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-danger">Supprimer</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td class="fw-medium">Quel port par défaut est utilisé par HTTPS ?</td>
+                                    <td class="text-success fw-bold">Port 443</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-danger">Supprimer</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

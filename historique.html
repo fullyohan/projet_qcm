@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QCM Master — Historique des tentatives</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* Reprise exacte de tes variables de couleur */
+            --emerald-dark: #064e3b;
+            --emerald-main: #047857;
+            --emerald-light: #10b981;
+            --emerald-soft: #ecfdf5;
+            --bg-light: #f9fafb;
+            --font-main: 'Plus Jakarta Sans', sans-serif;
+            
+            /* Ajouts simples pour les erreurs */
+            --rose-soft: #fff1f2;
+            --rose-dark: #9f1239;
+            --rose-main: #f43f5e;
+        }
+
+        body { 
+            font-family: var(--font-main); 
+            background-color: var(--bg-light); 
+            color: #1f2937;
+        }
+
+        .navbar-quiz {
+            background-color: #ffffff;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        /* Même style de carte premium que ton fichier quiz */
+        .history-card {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 1rem;
+        }
+
+        /* Badges de statut personnalisés pour correspondre à ton style */
+        .status-badge-success {
+            background-color: var(--emerald-soft);
+            color: var(--emerald-dark);
+            font-weight: 700;
+            padding: 0.35rem 0.75rem;
+            border-radius: 0.5rem;
+            font-size: 0.85rem;
+        }
+
+        .status-badge-danger {
+            background-color: var(--rose-soft);
+            color: var(--rose-dark);
+            font-weight: 700;
+            padding: 0.35rem 0.75rem;
+            border-radius: 0.5rem;
+            font-size: 0.85rem;
+        }
+
+        /* Encadré de réponse dans la liste */
+        .history-option {
+            display: flex;
+            align-items: center;
+            padding: 0.85rem 1.25rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.75rem;
+            margin-bottom: 0.5rem;
+            background: #ffffff;
+            font-size: 0.95rem;
+        }
+
+        /* Variantes pour montrer le résultat de l'option */
+        .history-option.correct-answer {
+            border-color: var(--emerald-light);
+            background-color: var(--emerald-soft);
+            color: var(--emerald-dark);
+            font-weight: 500;
+        }
+
+        .history-option.wrong-answer {
+            border-color: var(--rose-main);
+            background-color: var(--rose-soft);
+            color: var(--rose-dark);
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar-quiz py-3 shadow-sm mb-4">
+        <div class="container d-flex justify-content-between align-items-center">
+            <span class="fw-bold text-dark">💡 QCM<span style="color:var(--emerald-light)">Master</span></span>
+            <div>
+                <a href="#" class="btn btn-sm btn-outline-secondary px-3 fw-semibold">Retour au tableau de bord</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mb-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+
+                <div class="mb-4 d-flex justify-content-between align-items-end">
+                    <div>
+                        <h2 class="fw-bold text-dark mb-1" style="letter-spacing: -0.5px;">Dernière évaluation</h2>
+                        <p class="text-secondary mb-0 small">Catégorie : Protocoles Réseaux</p>
+                    </div>
+                    <div class="text-end">
+                        <span class="fs-4 fw-800 text-dark">16 <span class="fs-6 text-muted fw-normal">/ 20</span></span>
+                    </div>
+                </div>
+
+                <div class="card history-card p-4 p-sm-5 mb-4 shadow-none">
+                    <div class="d-flex align-items-center gap-2 mb-3">
+                        <span class="status-badge-success">✓ Réussie</span>
+                        <span class="text-muted small fw-medium">Question 1</span>
+                    </div>
+                    <h5 class="fw-bold text-dark mb-4">Qu'est-ce que le protocole HTTP ?</h5>
+                    
+                    <div class="options-container">
+                        <div class="history-option correct-answer">
+                            <span class="me-2">🟢</span>
+                            <span>HyperText Transfer Protocol (Votre réponse)</span>
+                        </div>
+                        <div class="history-option">
+                            <span class="me-2">⚪</span>
+                            <span>High Transfer Text Protocol</span>
+                        </div>
+                        <div class="history-option">
+                            <span class="me-2">⚪</span>
+                            <span>Hyperlink Transfer Tool</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card history-card p-4 p-sm-5 mb-4 shadow-none">
+                    <div class="d-flex align-items-center gap-2 mb-3">
+                        <span class="status-badge-danger">✗ Échouée</span>
+                        <span class="text-muted small fw-medium">Question 2</span>
+                    </div>
+                    <h5 class="fw-bold text-dark mb-4">Quel port par défaut est utilisé par le protocole HTTPS ?</h5>
+                    
+                    <div class="options-container">
+                        <div class="history-option">
+                            <span class="me-2">⚪</span>
+                            <span>Port 80</span>
+                        </div>
+                        <div class="history-option wrong-answer">
+                            <span class="me-2">🔴</span>
+                            <span>Port 21 (Votre réponse)</span>
+                        </div>
+                        <div class="history-option correct-answer">
+                            <span class="me-2">🟢</span>
+                            <span>Port 443 (Bonne réponse)</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
