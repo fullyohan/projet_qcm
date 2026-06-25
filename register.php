@@ -1,3 +1,34 @@
+<?php
+    require_once "db.php";
+
+    if ($_SERVER["REQUEST_METHOD"]=="POST"){
+    $username = $_POST["username"];
+    $email = $_POST["email"];
+    $password = $_POST["password"];
+
+    //verifie si l'email existe déja
+    
+    $sql = "SELECT * FROM users WHERE email = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $result = $->gstmtet_result();
+
+    if ($result->num_rows > 0){
+        echo "cet email est déjà utilisé.";
+    } else {
+        $password = password_hash($password,PASSWORD_DEFAULT);
+        $sql="INSERT INTO users(username,email,password) VALUES(?,?,?)";
+        $stmt=$conn->prepare($sql);
+        $stmt->bind_param("sss",$username, $email,$password);
+        $stmt->execute();
+        echo "compte créé avec succès!";
+        //header("location: login.php");
+        //exit();
+    }
+    }
+
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -33,20 +64,20 @@
             <div class="register-box p-4">
                 <h3 class="h5 fw-bold text-dark mb-4 text-center border-bottom pb-2">Inscription</h3>
                 
-                <form>
+                <form  action="api/register.php" method="POST">
                     <div class="mb-3">
                         <label for="username" class="form-label fw-semibold text-secondary">Pseudo</label>
-                        <input type="text" class="form-control" id="username" placeholder="Ex: Jean123" required>
+                        <input type="text" class="form-control" name="username" id="username" placeholder="Ex: Jean123" required>
                     </div>
 
                     <div class="mb-3">
                         <label for="email" class="form-label fw-semibold text-secondary">Adresse Email</label>
-                        <input type="email" class="form-control" id="email" placeholder="nom@exemple.com" required>
+                        <input type="email" class="form-control" name="email" id="email" placeholder="nom@exemple.com" required>
                     </div>
 
                     <div class="mb-4">
                         <label for="password" class="form-label fw-semibold text-secondary">Mot de passe</label>
-                        <input type="password" class="form-control" id="password" placeholder="Au moins 6 caractères" required>
+                        <input type="password" class="form-control" name="password" id="password" placeholder="Au moins 6 caractères" required>
                     </div>
 
                     <div class="d-grid gap-2">
