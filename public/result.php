@@ -80,10 +80,10 @@ $isSuccess = ($score >= 10);
                         </div>
                     </div>
                     <div class="d-flex flex-column gap-2 mt-4">
-                        <a href="/user/history.php?id=<?= $attemptId; ?>" class="btn btn-premium d-flex align-items-center justify-content-center gap-2">
+                        <a href="/user/history.php?id=<?= $attemptId; ?>" class="btn btn-emerald d-flex align-items-center justify-content-center gap-2">
                             <i class="bi bi-eye"></i> Analyser mes erreurs
                         </a>
-                        <a href="/user/dashboard.php" class="btn btn-premium-outline">
+                        <a href="/user/dashboard.php" class="btn btn-emerald-outline">
                             Retour au tableau de bord
                         </a>
                     </div>

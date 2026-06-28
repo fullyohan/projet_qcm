@@ -118,3 +118,80 @@ body {
     background-color: var(--emerald-main);
     transition: width 0.3s ease;
 }
+
+#fullscreen-overlay {
+    position: fixed;
+    inset: 0;
+    background: var(--emerald-main);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: white;
+    text-align: center;
+    padding: 2rem;
+}
+#fullscreen-overlay .overlay-icon {
+    font-size: 4rem;
+    margin-bottom: 1.5rem;
+    opacity: 0.9;
+}
+#fullscreen-overlay h2 {
+    font-weight: 800;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+#fullscreen-overlay p {
+    opacity: 0.85;
+    max-width: 480px;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+#btn-request-fullscreen {
+    background: white;
+    color: var(--emerald-main);
+    font-weight: 700;
+    border: none;
+    padding: 0.85rem 2.5rem;
+    border-radius: 0.75rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+#btn-request-fullscreen:hover {
+    background: var(--emerald-soft);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+#warning-banner {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 5000;
+    background: #dc2626;
+    color: white;
+    text-align: center;
+    padding: 0.75rem 1rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+    animation: slideDown 0.3s ease;
+}
+@keyframes slideDown {
+    from { transform: translateY(-100%); opacity: 0; }
+    to   { transform: translateY(0);    opacity: 1; }
+}
+
+#warning-counter-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: none;
+    color: #dc2626;
+    border-radius: 2rem;
+    padding: 0.25rem 0.85rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+}

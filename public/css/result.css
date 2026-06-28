@@ -86,36 +86,32 @@ body {
     color: var(--text-main);
 }
 
-.btn-premium {
-    background-color: var(--text-main);
-    color: #ffffff;
+.btn-emerald {
+    background-color: var(--emerald-main);
+    color: white;
     font-weight: 600;
-    font-size: 0.925rem;
-    padding: 0.85rem 1.5rem;
+    padding: 0.5rem 1.25rem;
     border-radius: 0.6rem;
-    border: 1px solid var(--text-main);
+    border: none;
     transition: all 0.2s ease;
 }
-.btn-premium:hover {
-    background-color: #111827;
-    border-color: #111827;
-    color: #ffffff;
+.btn-emerald:hover {
+    background-color: var(--emerald-dark);
+    color: white;
     transform: translateY(-1px);
+    box-shadow: 0 10px 15px -3px rgba(4, 120, 87, 0.2);
 }
 
-.btn-premium-outline {
-    background-color: transparent;
-    color: var(--text-muted);
+.btn-outline-emerald {
+    color: var(--emerald-main);
+    border: 1px solid var(--emerald-main);
     font-weight: 600;
-    font-size: 0.925rem;
-    padding: 0.85rem 1.5rem;
-    border-radius: 0.6rem;
-    border: 1px solid var(--border-color);
+    padding: 0.5rem 1.25rem;
+    border-radius: 0.5rem;
     transition: all 0.2s ease;
 }
-.btn-premium-outline:hover {
-    background-color: #f3f4f6;
-    color: var(--text-main);
-    border-color: #cbd5e1;
-    transform: translateY(-1px);
+.btn-outline-emerald:hover {
+    background-color: var(--emerald-soft);
+    color: var(--emerald-dark);
+    border-color: var(--emerald-main);
 }

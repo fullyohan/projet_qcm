@@ -36,7 +36,7 @@ $questions_sql = "SELECT
                   FROM answers ans
                   JOIN questions q ON ans.question_id = q.id
                   JOIN attempts att ON ans.attempt_id = att.id
-                  WHERE ans.attempt_id = ? AND att.user_id = ?";
+                  WHERE ans.attempt_id = ? AND att.user_id = ? order by NOT ans.is_correct";
 $stmt_q = $db->prepare($questions_sql);
 $stmt_q->bind_param("ii", $attempt_id,$user_id);
 $stmt_q->execute();
@@ -102,7 +102,6 @@ while ($row = $questions_res->fetch_assoc()) {
                 ?>
                     <div class="review-card shadow-sm">
                         <div class="mb-3">
-                            <span class="text-muted small fw-semibold">Question <?= $index++; ?></span>
                             <h5 class="fw-bold text-dark mt-1 mb-0"><?= htmlspecialchars($qa['question']); ?></h5>
                         </div>  
                         <div class="d-flex flex-column gap-2">
