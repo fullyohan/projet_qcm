@@ -2,10 +2,6 @@
 session_start();
 require_once '../security/auth-guard.php';
 require_auth();
-if (!isset($_SESSION['user_id'])) {
-    header("Location: ../auth/login.php");
-    exit();
-}
 
 require_once '../../config/db.php'; 
 $userId = $_SESSION['user_id'];
@@ -22,16 +18,24 @@ $countStmt->execute();
 $totalRows = $countStmt->get_result()->fetch_assoc()['total'];
 $totalPages = ceil($totalRows / $limit);
 
+$avgSql = "SELECT AVG(score) AS global_avg FROM attempts WHERE user_id = ?";
+$avgStmt = $db->prepare($avgSql);
+$avgStmt->bind_param("i", $userId);
+$avgStmt->execute();
+$avgRow = $avgStmt->get_result()->fetch_assoc();
+
+$avg = $avgRow['global_avg'] !== null ? floatval($avgRow['global_avg']) : null;
+
 $historySql = "SELECT a.id AS attempt_id, 
-                       a.score, 
-                       a.date AS exam_date,
-                       (SELECT q.module FROM answers ans 
-                        JOIN questions q ON ans.question_id = q.id 
-                        WHERE ans.attempt_id = a.id LIMIT 1) AS module_name
-                FROM attempts a
-                WHERE a.user_id = ?
-                ORDER BY a.date DESC
-                LIMIT ? OFFSET ?";
+                      a.score,
+                      a.date AS exam_date,
+                      (SELECT q.module FROM answers ans 
+                       JOIN questions q ON ans.question_id = q.id 
+                       WHERE ans.attempt_id = a.id LIMIT 1) AS module_name
+               FROM attempts a
+               WHERE a.user_id = ?
+               ORDER BY a.date DESC
+               LIMIT ? OFFSET ?";
 
 $historyStmt = $db->prepare($historySql);
 $historyStmt->bind_param("iii", $userId, $limit, $offset);
@@ -74,12 +78,22 @@ $modulesResult = $db->query($modulesSql);
 
     <main class="container mb-5">
         <div class="row g-4">
-            <div class="col-lg-4">
+           <div class="col-lg-4">
                 <div class="card content-card p-4 shadow-none">
                     <?php include '../includes/alert.php'?>
                     <h4 class="fw-bold text-dark mb-3">Nouveau test</h4>
-                    <p class="text-muted small">Prêt à tester vos connaissances ?</p>
-                    <button type="button" class="btn btn-emerald w-100 py-2 mt-2" data-bs-toggle="modal" data-bs-target="#ChoiceModal">
+                    <p class="text-muted small mb-3">Prêt à tester vos connaissances ?</p>
+                    
+                    <div class="d-flex justify-content-between align-items-center p-3 bg-light rounded mb-3">
+                        <span class="text-secondary small fw-medium">
+                            <i class="fa-solid fa-chart-simple me-2 text-muted"></i>Votre moyenne
+                        </span>
+                        <span class="fw-bold text-dark">
+                            <?php echo isset($avg) ? number_format($avg, 2) . ' / 20' : '-- / 20'; ?>
+                        </span>
+                    </div>
+
+                    <button type="button" class="btn btn-emerald w-100 py-2" data-bs-toggle="modal" data-bs-target="#ChoiceModal">
                         <i class="fa-solid fa-play me-2 small"></i>Lancer
                     </button>
                 </div>
