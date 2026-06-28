@@ -1,0 +1,107 @@
+:root {
+    --brand-green: #0ea5e9;
+    --emerald-dark: #064e3b;
+    --emerald-main: #047857;
+    --emerald-light: #10b981;
+    --emerald-soft: #ecfdf5;
+    --glass-white: #ffffff;
+    --bg-light: #f9fafb;
+    --border-color: #cbd5e1; 
+}
+
+body { 
+    font-family: 'Plus Jakarta Sans', sans-serif; 
+    background-color: var(--bg-light); 
+    color: #1f2937;
+    letter-spacing: -0.01em;
+    min-height: 100vh; 
+    display: flex; 
+    flex-direction: column;
+}
+
+
+.dashboard-header {
+    background-color: var(--glass-white);
+    padding: 40px 0;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.btn-emerald {
+    background-color: var(--emerald-main);
+    color: white;
+    font-weight: 600;
+    padding: 0.5rem 1.25rem;
+    border-radius: 0.6rem;
+    border: none;
+    transition: all 0.2s ease;
+}
+.btn-emerald:hover {
+    background-color: var(--emerald-dark);
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: 0 10px 15px -3px rgba(4, 120, 87, 0.2);
+}
+
+.content-card { 
+    border: 1px solid #e5e7eb !important; 
+    border-radius: 1.25rem; 
+    background: var(--glass-white);
+}
+
+.status-badge {
+    padding: 0.35rem 0.75rem;
+    border-radius: 2rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+.status-success { background-color: #d1fae5; color: #065f46; }
+.status-danger { background-color: #fee2e2; color: #991b1b; }
+
+.pagination .page-link {
+    color: var(--emerald-main);
+    border-color: #e5e7eb;
+    font-weight: 500;
+}
+.pagination .page-item.active .page-link {
+    background-color: var(--emerald-main);
+    border-color: var(--emerald-main);
+    color: white;
+}
+.pagination .page-link:focus {
+    box-shadow: 0 0 0 0.25rem rgba(4, 120, 87, 0.25);
+}
+
+footer { 
+    background-color: var(--glass-white);
+    border-top: 1px solid #e5e7eb;
+    color: #6b7280;
+    font-size: 0.875rem;
+}
+
+.module-select-card {
+    transition: all 0.2s ease;
+    background-color: #ffffff;
+}
+.module-select-card:hover {
+    border-color: var(--emerald-light) !important;
+    background-color: #f8fafc;
+    transform: translateY(-1px);
+}
+
+.module-select-card:has(input:checked) {
+    background-color: var(--emerald-main) !important;
+}
+
+.module-select-card:has(input:checked) div h6 {
+    color: white !important ;
+}
+
+.module-select-card:has(input:checked) span {
+    color: white !important ;
+}
+
+
+.module-select-card input:checked {
+    background-color: var(--emerald-main);
+    border-color: var(--emerald-main);
+}

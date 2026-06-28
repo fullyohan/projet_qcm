@@ -1,0 +1,66 @@
+:root {
+    --bg-page: #f8fafc;
+    --border-color: #e2e8f0;
+    --text-main: #0f172a;
+    --text-muted: #64748b;
+    --emerald-main: #059669;
+    --emerald-soft: #f0fdf4;
+    --rose-main: #e11d48;
+    --rose-soft: #fff1f2;
+}
+
+body { 
+    font-family: 'Plus Jakarta Sans', sans-serif; 
+    background-color: var(--bg-page); 
+    color: var(--text-main);
+    letter-spacing: -0.01em;
+}
+
+.navbar-quiz {
+    background-color: #ffffff;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.result-container {
+    max-width: 680px;
+    margin: 0 auto;
+}
+
+.score-banner {
+    background: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+}
+
+.score-digital {
+    font-size: 2.5rem;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1;
+}
+
+.review-card {
+    background: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+}
+
+.answer-badge-wrong {
+    background-color: var(--rose-soft);
+    color: var(--rose-main);
+    border: 1px solid rgba(225, 29, 72, 0.08);
+    border-radius: 0.5rem;
+    padding: 0.75rem 1rem;
+    font-size: 0.925rem;
+}
+
+.answer-badge-correct {
+    background-color: var(--emerald-soft);
+    color: var(--emerald-main);
+    border: 1px solid rgba(5, 150, 105, 0.08);
+    border-radius: 0.5rem;
+    padding: 0.75rem 1rem;
+    font-size: 0.925rem;
+}

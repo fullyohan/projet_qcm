@@ -1,0 +1,121 @@
+:root {
+    --bg-page: #f9fafb;
+    --border-color: #e5e7eb;
+    --text-main: #1f2937;
+    --text-muted: #6b7280;
+    --emerald-main: #047857;
+    --emerald-soft: #ecfdf5;
+    --emerald-dark: #064e3b;
+    --danger-main: #b91c1c;
+    --danger-soft: #fef2f2;
+    --danger-dark: #7f1d1d;
+}
+
+body { 
+    background-color: var(--bg-page); 
+    color: var(--text-main);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    letter-spacing: -0.01em;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.navbar-quiz {
+    background-color: #ffffff;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.result-card {
+    background: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: 1.25rem;
+}
+
+.score-container {
+    background-color: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    display: inline-block;
+    min-width: 190px;
+    transition: all 0.2s ease;
+}
+
+.score-container.success-border { border-color: var(--emerald-main); background-color: var(--emerald-soft); }
+.score-container.danger-border { border-color: var(--danger-main); background-color: var(--danger-soft); }
+
+.score-number {
+    font-size: 3.5rem;
+    font-weight: 800;
+    line-height: 1;
+    color: var(--text-main);
+    letter-spacing: -0.04em;
+}
+
+.score-max {
+    color: var(--text-muted);
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+
+.metrics-grid {
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.metric-item {
+    padding: 1.25rem 0;
+}
+.metric-item:not(:last-child) {
+    border-right: 1px solid var(--border-color);
+}
+
+.metric-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+}
+
+.metric-value {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.btn-premium {
+    background-color: var(--text-main);
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 0.925rem;
+    padding: 0.85rem 1.5rem;
+    border-radius: 0.6rem;
+    border: 1px solid var(--text-main);
+    transition: all 0.2s ease;
+}
+.btn-premium:hover {
+    background-color: #111827;
+    border-color: #111827;
+    color: #ffffff;
+    transform: translateY(-1px);
+}
+
+.btn-premium-outline {
+    background-color: transparent;
+    color: var(--text-muted);
+    font-weight: 600;
+    font-size: 0.925rem;
+    padding: 0.85rem 1.5rem;
+    border-radius: 0.6rem;
+    border: 1px solid var(--border-color);
+    transition: all 0.2s ease;
+}
+.btn-premium-outline:hover {
+    background-color: #f3f4f6;
+    color: var(--text-main);
+    border-color: #cbd5e1;
+    transform: translateY(-1px);
+}

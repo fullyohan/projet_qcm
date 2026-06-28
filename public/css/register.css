@@ -1,0 +1,71 @@
+:root {
+    --emerald-dark: #064e3b;
+    --emerald-main: #047857;
+    --emerald-light: #10b981;
+    --emerald-soft: #ecfdf5;
+    --bg-light: #f9fafb;
+    --font-main: 'Plus Jakarta Sans', sans-serif;
+}
+
+body { 
+    font-family: var(--font-main); 
+    background-color: var(--bg-light); 
+    min-height: 100vh; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    color: #1f2937;
+    padding: 20px;
+}
+
+.auth-card { 
+    max-width: 480px; 
+    width: 100%; 
+    border: 1px solid #e5e7eb; 
+    border-radius: 1.25rem; 
+    background: #ffffff;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 10px 15px -3px rgba(0, 0, 0, 0.03);
+}
+
+.brand-logo {
+    font-weight: 800;
+    font-size: 1.5rem;
+    letter-spacing: -0.5px;
+    color: var(--emerald-dark);
+    text-decoration: none;
+}
+.brand-logo span { color: var(--emerald-light); }
+
+.form-control {
+    border: 1px solid #d1d5db;
+    border-radius: 0.6rem;
+    padding: 0.65rem 0.85rem;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+}
+.form-control:focus {
+    border-color: var(--emerald-light);
+    box-shadow: 0 0 0 4px var(--emerald-soft);
+}
+
+.btn-emerald {
+    background-color: var(--emerald-main);
+    color: white;
+    font-weight: 600;
+    padding: 0.7rem 1.5rem;
+    border-radius: 0.6rem;
+    border: none;
+    transition: all 0.2s ease;
+}
+.btn-emerald:hover {
+    background-color: var(--emerald-dark);
+    color: white;
+    transform: translateY(-1px);
+}
+
+.link-emerald {
+    color: var(--emerald-main);
+    font-weight: 600;
+    text-decoration: none;
+}
+.link-emerald:hover { color: var(--emerald-dark); text-decoration: underline; }
